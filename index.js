@@ -45,7 +45,7 @@ app.post("/api/douban", async (req, res) => {
       body = Buffer.concat(body);
       res.send({
         code: 0,
-        data: body,
+        data: body.toString(),
       });
     });
   });
