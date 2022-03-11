@@ -33,6 +33,17 @@ app.post("/api/count", async (req, res) => {
   });
 });
 
+// 以下区域用于测试
+app.post("/api/douban", async (req, res) => {
+  const { action } = req.body; 
+  res.send({
+    code: 0,
+    data: "你成功了",
+  });
+});
+
+// 以上区域用于测试
+
 // 获取计数
 app.get("/api/count", async (req, res) => {
   const result = await Counter.count();
