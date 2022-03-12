@@ -35,27 +35,36 @@ app.post("/api/count", async (req, res) => {
 
 // 以下区域用于测试
 const https = require("https");
+// app.post("/api/douban", async (req, res) => {
+//   https.get('https://api.douban.com/v2/book/search?q=蛤蟆先生&start=0&count=20&apikey=0ac44ae016490db2204ce0a042db2916', (response) => {
+//     let body = [];
+//     response.on("data", (chunk) => {
+//       body.push(chunk);
+//     });
+//     response.on("end", function () {
+//       body = Buffer.concat(body);
+//       res.send({
+//         code: 0,
+//         data: body.toString(),
+//       });
+//     });
+//   });
+// });
+
 app.post("/api/douban", async (req, res) => {
-  https.get('https://api.douban.com/v2/book/search?q=蛤蟆先生&start=0&count=20&apikey=0ac44ae016490db2204ce0a042db2916', (response) => {
+  const { url } = req.body;
+  https.get(url, (res) => {
     let body = [];
-    response.on("data", (chunk) => {
+    res.on("data", (chunk) => {
       body.push(chunk);
     });
-    response.on("end", function () {
+    res.on("end", function () {
       body = Buffer.concat(body);
       res.send({
         code: 0,
         data: body.toString(),
       });
     });
-  });
-});
-
-app.post("/api/test", async (req, res) => {
-  const data = req.body;
-  res.send({
-    code: 0,
-    data: data,
   });
 });
 
