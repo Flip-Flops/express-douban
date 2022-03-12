@@ -53,19 +53,23 @@ const https = require("https");
 
 app.post("/api/douban", async (req, res) => {
   const { url } = req.body;
-  https.get(url, (res) => {
-    let body = [];
-    res.on("data", (chunk) => {
-      body.push(chunk);
-    });
-    res.on("end", function () {
-      body = Buffer.concat(body);
-      res.send({
+  res.send({
         code: 0,
-        data: body.toString(),
+        data: url,
       });
-    });
-  });
+//   https.get(url, (res) => {
+//     let body = [];
+//     res.on("data", (chunk) => {
+//       body.push(chunk);
+//     });
+//     res.on("end", function () {
+//       body = Buffer.concat(body);
+//       res.send({
+//         code: 0,
+//         data: body.toString(),
+//       });
+//     });
+//   });
 });
 
 // 以上区域用于测试
