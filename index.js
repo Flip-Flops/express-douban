@@ -49,7 +49,14 @@ app.post("/api/douban", async (req, res) => {
       });
     });
   });
-  
+});
+
+app.post("/api/test", async (req, res) => {
+  const data = req.body;
+  res.send({
+    code: 0,
+    data: data,
+  });
 });
 
 // 以上区域用于测试
